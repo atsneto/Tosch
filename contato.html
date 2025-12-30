@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contato Tosch - Startup de desenvolvimento de sites e e-commerce personalizados." />
+  <meta name="keywords" content="Tosch contato, desenvolvimento de sites, e-commerce, startup tech" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="brand" aria-label="Voltar para a home">Tosch</a>
+      <button class="nav-toggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="solucoes.html">Soluções</a></li>
+          <li><a href="#topo">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="topo">
+    <section class="hero hero-center">
+      <div class="container">
+        <h1 class="headline fade-in">Converse com a Tosch e tire seu projeto do papel.</h1>
+        <p class="subheadline fade-in">Compartilhe seu objetivo e retornamos com um plano claro de implementação, integrações e prazos.</p>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container contact-grid">
+        <div class="panel fade-in">
+          <h2 class="section-title">Informações</h2>
+          <p class="muted">Fale com nossa equipe e descubra como impulsionar sua presença digital.</p>
+          <ul class="info-list">
+            <li>Telefone: +55 84 996369401</li>
+            <li>E-mail: contato@tosch.com.br</li>
+          </ul>
+          <div class="muted">Retornamos em até 1 dia útil.</div>
+        </div>
+
+        <div class="panel fade-in">
+          <h2 class="section-title">Envie uma mensagem</h2>
+          <p class="muted">Conte o essencial: objetivo, prazos e integrações desejadas.</p>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+          <form id="contact-form" novalidate>
+            <div class="field-row">
+              <div>
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+              </div>
+              <div>
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(84) 99636-9401" required />
+              </div>
+            </div>
+            <div class="field-row">
+              <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required />
+              </div>
+              <div>
+                <label for="empresa">Empresa (opcional)</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" />
+              </div>
+            </div>
+            <div>
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" id="submit-btn">Enviar mensagem</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contato">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__info">
+          <h3 class="footer__title">Nossas Redes</h3>
+          <div class="footer__social">
+            <a href="https://www.instagram.com/toschsoftware/" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+              <img src="IMG/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://wa.me/5584996369401" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer__social-link">
+              <img src="IMG/whatsapp.png" alt="WhatsApp">
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__links">
+          <h4 class="footer__links-title">Navegação</h4>
+          <ul class="footer__links-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#sobre">Sobre</a></li>
+            <li><a href="solucoes.html">Soluções</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__links">
+          <h4 class="footer__links-title">Suporte</h4>
+          <ul class="footer__links-list">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Como Funciona</a></li>
+            <li><a href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__contact">
+          <h4 class="footer__links-title">Contato</h4>
+          <p class="footer__contact-item">contato@tosch.com.br</p>
+          <p class="footer__contact-item">+55 84 996369401</p>
+          <p class="footer__contact-item">Brasil</p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>&copy; 2025 Tosch. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Voltar ao topo">↑</button>
+
+  <script src="JS/main.js"></script>
+</body>
+</html>
