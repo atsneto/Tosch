@@ -1,22 +1,11 @@
 // Navegação mobile e header
-const navToggle = document.querySelector('.nav-toggle');
+const navToggle = null;
 const nav = document.querySelector('nav');
+const navOverlay = null;
 const headerEl = document.querySelector('header');
 const backToTop = document.querySelector('.back-to-top');
 
-if (navToggle && nav) {
-  navToggle.addEventListener('click', () => {
-    nav.classList.toggle('open');
-    navToggle.classList.toggle('active');
-  });
-
-  nav.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A' && nav.classList.contains('open')) {
-      nav.classList.remove('open');
-      navToggle.classList.remove('active');
-    }
-  });
-}
+// Nav is always visible; toggle removed
 
 // Smooth scroll para links internos
 const anchors = document.querySelectorAll('a[href^="#"]');

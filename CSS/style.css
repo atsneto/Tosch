@@ -95,23 +95,7 @@ nav a:hover {
   background: rgba(0, 123, 255, 0.08);
 }
 
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 8px;
-}
-
-.nav-toggle span {
-  width: 24px;
-  height: 3px;
-  background: var(--text);
-  border-radius: 3px;
-  transition: var(--transition);
-}
+/* Hamburger removed: nav always visible */
 
 main {
   padding-top: 90px;
@@ -138,6 +122,11 @@ section {
   display: grid;
   justify-items: center;
   gap: 12px;
+}
+
+.hero-center .headline,
+.hero-center .subheadline {
+  max-width: 760px;
 }
 
 .hero-grid {
@@ -330,14 +319,14 @@ section {
 
 .testimonial-track {
   position: relative;
-  min-height: 170px;
+  min-height: 200px;
 }
 
 .testimonial-item {
   opacity: 0;
   display: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
-  padding: 6px 0;
+  padding: 10px 0;
   position: absolute;
   inset: 0;
   transform: translateY(6px);
@@ -389,9 +378,10 @@ section {
 }
 
 .testimonial-quote {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   color: #0b1320;
-  margin-top: 6px;
+  margin-top: 10px;
+  line-height: 1.6;
 }
 
 .testimonial-dots {
@@ -664,46 +654,11 @@ textarea {
 
 @media (max-width: 768px) {
   nav {
-    position: absolute;
-    top: 72px;
-    right: 0;
-    background: #ffffff;
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    transition: max-height var(--transition);
-  }
-
-  nav.open {
-    max-height: 200px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
-    gap: 12px;
-  }
-
-  .nav-toggle {
-    display: flex;
+    display: none;
   }
 
   .navbar {
-    position: relative;
-  }
-
-  .nav-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translateY(7px);
-  }
-
-  .nav-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translateY(-7px);
+    justify-content: center;
   }
 }
 
@@ -723,5 +678,41 @@ textarea {
   .card,
   .testimonials {
     padding: 22px;
+  }
+
+  .testimonial-track {
+    min-height: 240px;
+  }
+
+  .footer__content {
+    text-align: center;
+    justify-items: center;
+  }
+
+  .footer__social {
+    justify-content: center;
+  }
+
+  .footer__links-list {
+    align-items: center;
+  }
+
+  .headline {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  .subheadline {
+    font-size: 0.98rem;
+    max-width: 100%;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .cta-banner {
+    text-align: center;
   }
 }
