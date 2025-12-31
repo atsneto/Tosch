@@ -50,38 +50,94 @@ if (backToTop && headerEl) {
   });
 }
 
-// Rotação de depoimentos (index)
-const testimonials = Array.from(document.querySelectorAll('.testimonial-item'));
-const dots = Array.from(document.querySelectorAll('.testimonial-dot'));
-if (testimonials.length > 0 && dots.length > 0) {
-  let timer;
-  let current = testimonials.findIndex((item) => item.classList.contains('active'));
-  if (current === -1) current = 0;
+// Auto-scroll infinito de logos via CSS
+const logoTrack = document.getElementById('logoTrack');
+if (logoTrack) {
+  const logoCards = Array.from(logoTrack.querySelectorAll('.logo-card'));
+  const originalHTML = logoTrack.innerHTML;
+  
+  // Duplicar o conteúdo várias vezes para loop infinito
+  for (let i = 0; i < 4; i++) {
+    logoTrack.innerHTML += originalHTML;
+  }
+}
 
-  const setActive = (index) => {
-    testimonials.forEach((item, idx) => {
-      const isActive = idx === index;
-      item.classList.toggle('active', isActive);
-      dots[idx]?.classList.toggle('active', isActive);
-    });
-  };
+// Drag to scroll para carrossel de portfólio
+const portfolioCarousel = document.querySelector('.portfolio-carousel');
+if (portfolioCarousel) {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
 
-  const start = () => {
-    timer = setInterval(() => {
-      current = (current + 1) % testimonials.length;
-      setActive(current);
-    }, 5200);
-  };
-
-  start();
-  dots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
-      clearInterval(timer);
-      current = idx;
-      setActive(current);
-      start();
-    });
+  portfolioCarousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - portfolioCarousel.offsetLeft;
+    scrollLeft = portfolioCarousel.scrollLeft;
   });
+
+  portfolioCarousel.addEventListener('mouseleave', () => {
+    isDown = false;
+  });
+
+  portfolioCarousel.addEventListener('mouseup', () => {
+    isDown = false;
+  });
+
+  portfolioCarousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - portfolioCarousel.offsetLeft;
+    const walk = (x - startX) * 2; // velocidade do scroll
+    portfolioCarousel.scrollLeft = scrollLeft - walk;
+  });
+
+  // Navegação e contador de projetos
+  const items = Array.from(document.querySelectorAll('.portfolio-item'));
+  const counter = document.querySelector('.portfolio-counter');
+  const prevBtn = document.querySelector('.portfolio-nav-btn.prev');
+  const nextBtn = document.querySelector('.portfolio-nav-btn.next');
+  let currentIndex = 0;
+
+  const updateCounter = () => {
+    if (counter && items.length) {
+      counter.textContent = `${currentIndex + 1}/${items.length}`;
+    }
+  };
+
+  const scrollToIndex = (idx) => {
+    if (!items.length) return;
+    currentIndex = (idx + items.length) % items.length;
+    items[currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    updateCounter();
+  };
+
+  const syncIndexWithScroll = () => {
+    if (!items.length) return;
+    const center = portfolioCarousel.getBoundingClientRect().left + portfolioCarousel.clientWidth / 2;
+    let closest = 0;
+    let minDist = Infinity;
+    items.forEach((item, i) => {
+      const rect = item.getBoundingClientRect();
+      const dist = Math.abs(rect.left + rect.width / 2 - center);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = i;
+      }
+    });
+    currentIndex = closest;
+    updateCounter();
+  };
+
+  let scrollTimeout;
+  portfolioCarousel.addEventListener('scroll', () => {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(syncIndexWithScroll, 120);
+  });
+
+  if (prevBtn) prevBtn.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => scrollToIndex(currentIndex + 1));
+
+  updateCounter();
 }
 
 // Formulário de contato (contato.html)
