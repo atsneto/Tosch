@@ -696,7 +696,7 @@ section {
 .logo-track {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   width: 50%;
   flex-shrink: 0;
 }
