@@ -23,7 +23,6 @@ body {
   line-height: 1.6;
   font-size: 16px;
   scroll-behavior: smooth;
-  overflow-y: scroll;
 }
 
 a {
@@ -109,6 +108,10 @@ section {
 .hero {
   background: var(--bg);
   padding: 96px 0 82px;
+}
+
+#contato {
+  padding: 12px 0 72px;
 }
 
 .hero-solutions {
@@ -599,7 +602,7 @@ section {
   }
   
   .portfolio-image {
-    height: 300px;
+    height: 200px;
   }
   
   .portfolio-card {
@@ -608,7 +611,15 @@ section {
   
   .portfolio-placeholder {
     width: 95vw;
-    min-height: 380px;
+    min-height: 280px;
+  }
+  
+  .portfolio-title {
+    font-size: 1rem;
+  }
+  
+  .portfolio-subtitle {
+    font-size: 0.8rem;
   }
 }
 .card {
@@ -708,6 +719,8 @@ section {
   max-width: 220px;
   object-fit: contain;
   display: block;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
 /* Animação infinita REAL */
@@ -727,9 +740,8 @@ section {
   }
 }
 
-/* Hover pause */
-.logo-carousel:hover .logo-wrapper {
-  animation-play-state: paused;
+.logo-card:hover img {
+  filter: grayscale(0%);
 }
 
 
@@ -738,10 +750,10 @@ section {
   color: #ffffff;
   border-radius: var(--radius);
   padding: 32px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 18px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -855,7 +867,7 @@ textarea {
 .footer {
   background: #0b1320;
   color: #e9eef7;
-  padding: 48px 0 32px;
+  padding: 32px 0 32px;
   margin-top: 44px;
 }
 
@@ -864,6 +876,7 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 28px;
   align-items: start;
+  margin-top: 32px;
 }
 
 .footer__title {
@@ -1008,6 +1021,16 @@ textarea {
 @media (max-width: 768px) {
   nav {
     display: none;
+  }
+
+  .cta-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-banner > div:last-child {
+    width: 100%;
+    justify-content: center !important;
   }
 
    /* 🔥 CARROSSEL */
