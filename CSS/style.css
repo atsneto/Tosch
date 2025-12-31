@@ -23,6 +23,7 @@ body {
   line-height: 1.6;
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 
 a {
@@ -639,52 +640,54 @@ section {
 }
 
 .logo-carousel {
-  background: transparent;
-  padding: 16px 0 8px;
-  display: grid;
-  gap: 10px;
-  position: relative;
   overflow: hidden;
+  overflow-x: hidden;
+  max-width: 600px;
+  margin: 48px auto 0;
+  position: relative;
 }
 
+/* Máscaras */
 .logo-carousel::before,
 .logo-carousel::after {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 150px;
-  pointer-events: none;
+  width: 120px;
   z-index: 2;
+  pointer-events: none;
 }
 
 .logo-carousel::before {
   left: 0;
-  background: linear-gradient(to right, var(--bg) 0%, var(--bg) 20%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to right, var(--bg), transparent);
 }
 
 .logo-carousel::after {
   right: 0;
-  background: linear-gradient(to left, var(--bg) 0%, var(--bg) 20%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(to left, var(--bg), transparent);
 }
 
+.logo-group {
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* 🔥 Wrapper CORRETO */
+.logo-wrapper {
+  display: flex;
+  width: 200%;
+  animation: marquee 12s linear infinite;
+}
+
+/* 🔥 Cada track ocupa metade */
 .logo-track {
   display: flex;
-  gap: 44px;
   align-items: center;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  will-change: transform;
-  animation: scroll-logos 40s linear infinite;
-}
-
-@keyframes scroll-logos {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-20%);
-  }
+  gap: 24px;
+  width: 50%;
+  flex-shrink: 0;
 }
 
 .logo-card {
@@ -694,28 +697,41 @@ section {
   place-items: center;
   padding: 10px 14px;
   border-radius: 12px;
-  transition: transform var(--transition), opacity var(--transition);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
 }
+
+
 
 .logo-card img {
   max-height: 120px;
   max-width: 220px;
   object-fit: contain;
-  filter: none;
-  opacity: 1;
-  transition: transform var(--transition);
+  display: block;
 }
 
-.logo-card:hover img,
-.logo-card.active img {
-  filter: none;
-  opacity: 1;
-  transform: none;
+/* Animação infinita REAL */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-.logo-dots {
-  display: none;
+/* Mobile */
+@media (max-width: 768px) {
+  .logo-wrapper {
+    animation-duration: 6s;
+  }
 }
+
+/* Hover pause */
+.logo-carousel:hover .logo-wrapper {
+  animation-play-state: paused;
+}
+
 
 .cta-banner {
   background: linear-gradient(120deg, #7c3aed, #a78bfa);
@@ -965,6 +981,21 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  @media (max-width: 1024px) {
+  .logo-carousel {
+    max-width: 100%;
+  }
+
+  .logo-card {
+    min-width: 140px;
+  }
+
+  .logo-card img {
+    max-height: 96px;
+  }
+}
+
+
   .cta-banner {
     grid-template-columns: 1fr;
   }
@@ -979,6 +1010,27 @@ textarea {
     display: none;
   }
 
+   /* 🔥 CARROSSEL */
+  .logo-wrapper {
+    animation-duration: 7s; /* mais rápido */
+  }
+
+  .logo-card {
+    min-width: 120px;
+    padding: 8px 10px;
+  }
+
+  .logo-card img {
+    max-height: 80px;
+    max-width: 160px;
+  }
+
+  /* Fade menor */
+  .logo-carousel::before,
+  .logo-carousel::after {
+    width: 72px;
+  }
+
   .navbar {
     justify-content: center;
   }
@@ -986,11 +1038,39 @@ textarea {
   .logo-track {
     overflow-x: hidden;
   }
+
+  .cta-banner .btn-primary {
+    justify-self: center;
+    padding: 12px 18px;
+    min-width: 180px;
+    text-align: center;
+    font-size: 0.98rem;
+  }
 }
 
 @media (max-width: 480px) {
   .hero {
     padding: 72px 0 64px;
+  }
+
+   /* 🔥 CARROSSEL */
+  .logo-wrapper {
+    animation-duration: 6s;
+  }
+
+  .logo-card {
+    min-width: 100px;
+    padding: 6px 8px;
+  }
+
+  .logo-card img {
+    max-height: 64px;
+    max-width: 120px;
+  }
+
+  .logo-carousel::before,
+  .logo-carousel::after {
+    width: 48px;
   }
 
   .cta-group {

@@ -50,18 +50,6 @@ if (backToTop && headerEl) {
   });
 }
 
-// Auto-scroll infinito de logos via CSS
-const logoTrack = document.getElementById('logoTrack');
-if (logoTrack) {
-  const logoCards = Array.from(logoTrack.querySelectorAll('.logo-card'));
-  const originalHTML = logoTrack.innerHTML;
-  
-  // Duplicar o conteúdo várias vezes para loop infinito
-  for (let i = 0; i < 4; i++) {
-    logoTrack.innerHTML += originalHTML;
-  }
-}
-
 // Drag to scroll para carrossel de portfólio
 const portfolioCarousel = document.querySelector('.portfolio-carousel');
 if (portfolioCarousel) {
